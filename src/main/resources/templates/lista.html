@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista de Tareas</title>
+  <style>
+    /* Estilos para la tabla */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Estilos para los botones */
+    .btn {
+        padding: 5px 10px;
+        border: none;
+        background-color: #f44336;
+        color: white;
+        cursor: pointer;
+        border-radius: 3px;
+        text-decoration: none; /* Añade estilos de enlace */
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+<h1>Lista de Tareas</h1>
+
+<!-- Botón para crear una nueva tarea -->
+<form action="/tareas/crear" method="get">
+  <button type="submit" class="btn">Crear Tarea</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="tarea : ${tareas}">
+    <td th:text="${tarea.id}">ID</td>
+    <td th:text="${tarea.titulo}">Título</td>
+    <td th:text="${tarea.descripcion}">Descripción</td>
+    <td th:text="${tarea.fecha}">Fecha</td>
+    <td>
+      <form th:action="@{/tareas/{id}/eliminar(id=${tarea.id})}" method="get">
+        <input type="submit" value="Eliminar">
+      </form>
+      <a th:href="@{'/tareas/' + ${tarea.id} + '/editar'}" class="btn">Editar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

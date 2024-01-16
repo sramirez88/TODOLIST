@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Crear Nueva Tarea</title>
+  <style>
+        /* Estilos CSS */
+        /* ... */
+    </style>
+</head>
+<body>
+<h1>Crear Nueva Tarea</h1>
+
+<!-- Formulario para crear una nueva tarea -->
+<form th:action="@{/tareas/crear}" th:object="${tarea}" method="post">
+  <label>Título:</label>
+  <input type="text" th:field="*{titulo}" required /><br/><br/>
+
+  <label>Descripción:</label>
+  <input type="text" th:field="*{descripcion}" required /><br/><br/>
+
+  <label>Fecha:</label>
+  <input type="date" th:field="*{fecha}" required /><br/><br/>
+
+  <input type="submit" value="Guardar" />
+</form>
+</body>
+</html>

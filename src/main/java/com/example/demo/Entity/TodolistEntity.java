@@ -26,7 +26,7 @@ public class TodolistEntity {
         this.descripcion = descripcion;
         this.fecha = fecha;
     }
-
+    public Long getId() { return id; }
     public String getTitulo() {
         return titulo;
     }
